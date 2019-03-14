@@ -10,7 +10,7 @@ script:
 
 after_success:
   - docker build -t framegenerator/multi-client:latest ./client
-  - docker build -t framegenerator/multi-nginx:latest./nginx
+  - docker build -t framegenerator/multi-nginx:latest ./nginx
   - docker build -t framegenerator/multi-server:latest ./server
   - docker build -t framegenerator/multi-worker:latest ./worker
 
