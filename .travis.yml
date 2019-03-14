@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t framegenerator/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run framegenerator/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t framegenerator/multi-client ./client
+  - docker build -t framegenerator/multi-nginx ./nginx
+  - docker build -t framegenerator/multi-server ./server
+  - docker build -t framegenerator/multi-worker ./worker
+
+  # Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take those images and push them to docker hub
+  - docker push framegenerator/multi-client
+  - docker push framegenerator/multi-nginx
+  - docker push framegenerator/multi-server
+  - docker push framegenerator/multi-worker
