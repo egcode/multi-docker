@@ -18,7 +18,7 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   # Take those images and push them to docker hub
-  - docker push framegenerator/multi-client
-  - docker push framegenerator/multi-nginx
-  - docker push framegenerator/multi-server
-  - docker push framegenerator/multi-worker
+  - docker push framegenerator/multi-client:latest
+  - docker push framegenerator/multi-nginx:latest
+  - docker push framegenerator/multi-server:latest
+  - docker push framegenerator/multi-worker:latest
