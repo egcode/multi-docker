@@ -9,10 +9,10 @@ script:
   - docker run framegenerator/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t framegenerator/multi-client ./client
-  - docker build -t framegenerator/multi-nginx ./nginx
-  - docker build -t framegenerator/multi-server ./server
-  - docker build -t framegenerator/multi-worker ./worker
+  - docker build -t framegenerator/multi-client:latest ./client
+  - docker build -t framegenerator/multi-nginx:latest./nginx
+  - docker build -t framegenerator/multi-server:latest ./server
+  - docker build -t framegenerator/multi-worker:latest ./worker
 
   # Login to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
